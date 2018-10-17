@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 COPY * /tmp/
 
 RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
-    apt-get -y update && \
+    bash /tmp/update_apt_source.sh && \
     apt-get -y install \
     lsb-release \
     apt-utils \

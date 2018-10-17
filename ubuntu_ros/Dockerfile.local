@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND="noninteractive"\
 
 COPY * /tmp/
 
-RUN apt-get update -y && \
+RUN bash /tmp/update_apt_ros_source.sh && \
+    apt-get update -y && \
     apt-get -y install \
     apt-utils \
     apt-transport-https \
@@ -16,4 +17,5 @@ RUN apt-get update -y && \
     git \
     wget \
     sudo &&\
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
