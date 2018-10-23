@@ -3,15 +3,14 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND="noninteractive" \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
-    LC_ALL="en_US.UTF-8" \
-    locale-gen en_US.UTF-8 \
-    dpkg-reconfigure locales
+    LC_ALL="en_US.UTF-8"
 
 COPY * /tmp/
 
 RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
     bash /tmp/update_apt_source.sh && \
     apt-get -y install \
+    tzdata \
     lsb-release \
     apt-utils \
     apt-transport-https \
@@ -19,6 +18,6 @@ RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
     git \
     vim \
     wget \
-    sudo &&\
+    sudo && \
     rm -rf /var/lib/apt/lists/* &&\
     rm -rf /tmp/*
