@@ -1,11 +1,9 @@
 FROM ubuntu:16.04
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US:en" \
-    LC_ALL="en_US.UTF-8" \
-    locale-gen en_US.UTF-8 \
-    dpkg-reconfigure locales 
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL="en_US.UTF-8" 
 
 COPY * /tmp/
 
