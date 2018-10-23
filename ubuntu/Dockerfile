@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=en_US:en \
     LC_ALL="en_US.UTF-8" 
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 COPY * /tmp/
 
 RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
