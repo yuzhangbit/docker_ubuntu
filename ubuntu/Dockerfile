@@ -1,11 +1,6 @@
 FROM ubuntu:16.04
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    LANG=en_US.UTF-8 \
-    LANGUAGE=en_US:en \
-    LC_ALL="en_US.UTF-8" 
-
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive 
 
 COPY * /tmp/
 
