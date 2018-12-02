@@ -19,6 +19,7 @@ RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
     sudo &&\
     dpkg-reconfigure locales && \
     adduser --disabled-password --gecos '' robot && adduser robot sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers  && \
+    sudo chown -R /home/robot && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
