@@ -3,9 +3,12 @@ FROM osrf/ros:kinetic-desktop-xenial
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
+ENV USER="robot"
+
 COPY * /tmp/
 
-RUN bash /tmp/update_apt_ros_source.sh && \
+RUN cp /tmp/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy && \
+    bash /tmp/update_apt_ros_source.sh && \
     apt-get update -y && \
     apt-get -y install \
     locales \
@@ -16,5 +19,12 @@ RUN bash /tmp/update_apt_ros_source.sh && \
     wget \
     sudo && \
     dpkg-reconfigure locales && \
+    addgroup --gid 1000 ${USER} && \
+    adduser --disabled-password --gecos '' --uid 1000 --gid 1000 ${USER} && \
+    adduser --uid 1000 --gid 1000 ${USER} sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers  && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
+
+USER robot
